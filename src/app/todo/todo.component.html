@@ -1,0 +1,90 @@
+<nav class="navbar navbar-expand-sm bg-">
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/list">List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+      
+    </ul>
+  </nav>
+
+
+
+
+
+
+
+
+<div class="row">
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content white-text">
+          <div class="row">
+            <div class="col s5">
+              <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+                <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="employeeService.selectedEmployee._id">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input type="text" name="name" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.name" placeholder="Enter full name" required>
+                    <label>Name :
+                      <label class="red-text">*</label>
+                    </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input type="text" name="position" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.position" placeholder="Enter your position">
+                    <label>Position :</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input type="text" name="office" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.office" placeholder="Enter office name">
+                    <label>Office :</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input type="number" name="salary" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.salary" placeholder="Salary per annum">
+                    <label>Salary :</label>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                      <input type="date" name="DT"  #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.DT" placeholder="">
+                      <label>Date :</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input type="email" name="username"  #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.username" placeholder="">
+                      <label>UserName :</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input type="password" name="pwd"  #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.pwd" placeholder="">
+                      <label>Password :</label>
+                    </div>
+                  </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <button class="btn btn-custom right" type="button" (click)="resetForm(employeeForm)">Reset</button>
+                    <button class="btn btn-custom right" type="submit" [disabled]="!employeeForm.valid">Submit</button>
+                  </div>
+                </div>
+                
+              </form>
+            </div>
+        
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>

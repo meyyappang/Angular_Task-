@@ -1,0 +1,15 @@
+.imdone{
+    text-decoration: line-through;
+  }
+  .reddish{
+    background-color: red;;
+  }
+  .greenish{
+    background-color: green;;
+  }
+  .card-content{
+    background-color:white;
+  }
+  table,tr,th,td{
+    border: 1px solid white;
+  }
