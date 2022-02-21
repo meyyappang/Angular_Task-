@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-userprofile',
@@ -11,14 +10,12 @@ export class UserprofileComponent implements OnInit {
 
   isLoggedIn$: Observable<boolean>;
 
-  constructor(private authService: AuthService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.isLoggedIn$ = this.authService.isLoggedIn;
+    
   }
 
-  onLogout() {
-    this.authService.logout();
-  }
+ 
 
 }

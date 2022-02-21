@@ -1,7 +1,12 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ExtUrlResolverService } from './ext-url-resolver.service';
+import { GitAuthComponent } from './git-auth/git-auth.component';
 import { ListComponent } from './list/list.component';
 import { LoginComponent } from './login/login.component';
+import { NoSuchComponent } from './no-such/no-such.component';
+import { RedirectComponent } from './redirect/redirect.component';
 import { TaskComponent } from './task/task.component';
 import { TodoComponent } from './todo/todo.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
@@ -13,7 +18,7 @@ const routes: Routes = [{
 
 {
 path:'',
-component:TodoComponent
+component:LoginComponent
 },
 {
   path:'todo/:id',
@@ -34,6 +39,34 @@ component:UserprofileComponent
 {
   path:'list',
   component:ListComponent
+},
+{
+  path:"",
+  pathMatch:"full",
+  redirectTo:'login'
+},
+{
+  path:'dashboard',
+  component:DashboardComponent
+},
+{
+  path:'login',
+  component:LoginComponent
+},
+{
+  path: 'test',
+  component: GitAuthComponent,
+  resolve: {
+      url: ExtUrlResolverService
+  }
+},
+{
+path:'redirect',
+component:RedirectComponent
+},
+{
+path:'**',
+component:NoSuchComponent
 }];
 
 @NgModule({

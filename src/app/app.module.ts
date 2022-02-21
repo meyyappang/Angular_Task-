@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 
@@ -13,10 +13,14 @@ import { ListComponent } from './list/list.component';
 import { TaskComponent } from './task/task.component';
 import { LoginComponent } from './login/login.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
-import { AuthService } from './auth.service';
-import { AuthGuard } from './services/auth.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './app-material/app-material.module';
+import { GitAuthComponent } from './git-auth/git-auth.component';
+import { RedirectComponent } from './redirect/redirect.component';
+import { ErrorComponent } from './error/error.component';
+import { NoSuchComponent } from './no-such/no-such.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ErrorHandlingInterceptorService } from './error-handling-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,15 @@ import { AppMaterialModule } from './app-material/app-material.module';
     TaskComponent,
     LoginComponent,
     UserprofileComponent,
+    GitAuthComponent,
+    RedirectComponent,
+    ErrorComponent,
+    NoSuchComponent,
+    DashboardComponent
+
+    
+
+
   ],
   imports: [
     BrowserModule,
@@ -35,13 +48,21 @@ import { AppMaterialModule } from './app-material/app-material.module';
     ReactiveFormsModule,
     HttpClientModule,
     AppMaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientXsrfModule
     
   
   
     
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:ErrorHandlingInterceptorService,
+      multi:true
+  
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

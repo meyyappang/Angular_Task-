@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { EmployeeService } from '../employee.service';
 import { Employeemodel } from '../employeemodel.model';
+import { OAuthService } from '../oauth.service';
 
 
 
@@ -15,10 +16,13 @@ import { Employeemodel } from '../employeemodel.model';
 })
 export class TodoComponent implements OnInit {
   id:String='';
+  username: any;
+  
 
-  constructor(public employeeService:EmployeeService,private route:ActivatedRoute,private router:Router) { }
+  constructor(public employeeService:EmployeeService,private serv:OAuthService,private route:ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {
+    this.serv.getUserDetails(localStorage.getItem('Token')).subscribe({ next: data=>this.username=data["login"], error: err=>{console.log(err)}});
     console.log(new Date().toLocaleDateString());
     this.id = this.route.snapshot.paramMap.get('id');
     console.log(this.id);
@@ -88,6 +92,15 @@ export class TodoComponent implements OnInit {
     
     this.employeeService.selectedEmployee = emp;
   }
+
+  logout()
+{
+  this.serv.logout().subscribe(data=>this.router.navigate(['/login']),err=>{console.log( err)});
+
+
+  localStorage.removeItem('Token')
+}
+
 
   // onDelete(_id: string, form: NgForm) {
   //   if (confirm('Are you sure to delete this record ?') == true) {

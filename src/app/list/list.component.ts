@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EmployeeService } from '../employee.service';
 import { Employeemodel } from '../employeemodel.model';
+import { OAuthService } from '../oauth.service';
 
 @Component({
   selector: 'app-list',
@@ -11,10 +12,12 @@ import { Employeemodel } from '../employeemodel.model';
   providers:[EmployeeService]
 })
 export class ListComponent implements OnInit {
+  username: any;
 
-  constructor(public employeeService:EmployeeService,private router:Router) { }
+  constructor(public employeeService:EmployeeService,private router:Router,private serv:OAuthService) { }
 
   ngOnInit(): void {
+    this.serv.getUserDetails(localStorage.getItem('Token')).subscribe({ next: data=>this.username=data["login"], error: err=>{console.log(err)}});
     this.resetForm();
     this.refreshEmployeeList();
   }
