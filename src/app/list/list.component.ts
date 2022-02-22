@@ -13,10 +13,15 @@ import { OAuthService } from '../oauth.service';
 })
 export class ListComponent implements OnInit {
   username: any;
+  token=localStorage.getItem('Token')
 
   constructor(public employeeService:EmployeeService,private router:Router,private serv:OAuthService) { }
 
   ngOnInit(): void {
+    if(!this.token){
+      alert('You are not a Logged In user.....')
+      
+    }
     this.serv.getUserDetails(localStorage.getItem('Token')).subscribe({ next: data=>this.username=data["login"], error: err=>{console.log(err)}});
     this.resetForm();
     this.refreshEmployeeList();
