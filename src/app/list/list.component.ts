@@ -12,7 +12,13 @@ import { OAuthService } from '../oauth.service';
   providers:[EmployeeService]
 })
 export class ListComponent implements OnInit {
+
+  appStatus = new Promise((resolve, reject) =>{
+    setTimeout(() =>{resolve('Users Data Received');
+  }, 3000);
+  })
   username: any;
+  today:Date=new Date();
   token=localStorage.getItem('Token')
 
   constructor(public employeeService:EmployeeService,private router:Router,private serv:OAuthService) { }
@@ -20,7 +26,7 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     if(!this.token){
       alert('You are not a Logged In user.....')
-      
+
     }
     this.serv.getUserDetails(localStorage.getItem('Token')).subscribe({ next: data=>this.username=data["login"], error: err=>{console.log(err)}});
     this.resetForm();
@@ -36,7 +42,7 @@ export class ListComponent implements OnInit {
       position: "",
       office: "",
       salary: null,
-      DT:new Date().toLocaleDateString(),
+      DT:this.today,
       username:"",
       pwd:"",
       task:"",
@@ -66,5 +72,15 @@ export class ListComponent implements OnInit {
       });
     }
   }
+
+  logout()
+{
+  this.serv.logout().subscribe(data=>this.router.navigate(['/login']),err=>{console.log( err)});
+
+
+  localStorage.removeItem('Token')
+}
+
+
 
 }

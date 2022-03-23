@@ -4,7 +4,7 @@ export class Employeemodel {
     position: string;
     office: string;
     salary: number;
-    DT:string;
+    DT:any;
     username:string;
     pwd:string;
     task:string;

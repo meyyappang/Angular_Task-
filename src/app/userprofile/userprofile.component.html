@@ -1,6 +1,45 @@
-<mat-toolbar color="primary" *ngIf="isLoggedIn$ | async as isLoggedIn">
-    
-    <!-- <button mat-button (click)="onLogout()" *ngIf="isLoggedIn">Logout</button> -->
-  </mat-toolbar>
+<nav class="navbar navbar-expand-sm bg-">
+  <!-- Links -->
+  <ul class="navbar-nav">
 
-  <app-list></app-list>
+
+    <button class="btn log" (click)="logout()">Logout</button>
+
+  </ul>
+</nav>
+
+
+
+
+
+
+
+
+<div class="col s7">
+  <table class="responsive-table highlight">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Office</th>
+        <th>Salary</th>
+        <th>Date</th>
+        <th>Task</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let emp of employeeService.employees">
+      <td>{{emp.name}}</td>
+      <td>{{emp.position}}</td>
+      <td>{{emp.office}}</td>
+      <td>{{emp.salary}}</td>
+      <td>{{emp.DT | date:'fulldate'}}</td>
+      <td>{{emp.task}}</td>
+      <td>{{emp.desc}}</td>
+      <td>
+        
+      </td>
+    </tr>
+  </table>
+</div>

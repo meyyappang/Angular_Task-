@@ -1,9 +1,10 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ActiveguardGuard } from './activeguard.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ExtUrlResolverService } from './ext-url-resolver.service';
 import { GitAuthComponent } from './git-auth/git-auth.component';
-import { ListComponent } from './list/list.component';
+// import { ListComponent } from './list/list.component';
 import { LoginComponent } from './login/login.component';
 import { NoSuchComponent } from './no-such/no-such.component';
 import { RedirectComponent } from './redirect/redirect.component';
@@ -38,7 +39,7 @@ component:UserprofileComponent
 },
 {
   path:'list',
-  component:ListComponent
+  loadChildren:()=> import("./list/list.module").then(m=> m.ListModule),canActivate:[ActiveguardGuard]
 },
 {
   path:"",

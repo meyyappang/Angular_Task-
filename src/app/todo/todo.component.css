@@ -5,7 +5,7 @@
     background-color: red;;
   }
   .greenish{
-    background-color: green;;
+    background-color: blue;;
   }
   .card-content{
     background-color:white;
@@ -13,3 +13,8 @@
   table,tr,th,td{
     border: 1px solid white;
   }
+.log{
+  float:right;
+  margin-top: 13px;
+  
+}

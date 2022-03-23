@@ -17,6 +17,8 @@ import { OAuthService } from '../oauth.service';
 export class TodoComponent implements OnInit {
   id:String='';
   username: any;
+  today:Date=new Date();
+  
   
 
   constructor(public employeeService:EmployeeService,private serv:OAuthService,private route:ActivatedRoute,private router:Router) { }
@@ -51,7 +53,7 @@ export class TodoComponent implements OnInit {
       position: "",
       office: "",
       salary: null,
-      DT:new Date().toLocaleDateString(),
+      DT:this.today,
       username:"",
       pwd:"",
       task:"",

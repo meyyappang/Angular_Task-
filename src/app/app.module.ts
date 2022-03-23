@@ -21,6 +21,9 @@ import { ErrorComponent } from './error/error.component';
 import { NoSuchComponent } from './no-such/no-such.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ErrorHandlingInterceptorService } from './error-handling-interceptor.service';
+import { UsdInrPipe } from './pipes/usd-inr.pipe';
+import { ActiveguardGuard } from './activeguard.guard';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +38,8 @@ import { ErrorHandlingInterceptorService } from './error-handling-interceptor.se
     RedirectComponent,
     ErrorComponent,
     NoSuchComponent,
-    DashboardComponent
+    DashboardComponent,
+    UsdInrPipe
 
     
 
@@ -49,7 +53,9 @@ import { ErrorHandlingInterceptorService } from './error-handling-interceptor.se
     HttpClientModule,
     AppMaterialModule,
     BrowserAnimationsModule,
-    HttpClientXsrfModule
+    HttpClientXsrfModule,
+  
+    
     
   
   
@@ -61,7 +67,7 @@ import { ErrorHandlingInterceptorService } from './error-handling-interceptor.se
       useClass:ErrorHandlingInterceptorService,
       multi:true
   
-    }
+    },ActiveguardGuard
   ],
   bootstrap: [AppComponent]
 })

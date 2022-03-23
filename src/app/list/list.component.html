@@ -1,3 +1,28 @@
+<nav class="navbar navbar-expand-sm bg-">
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="/todo">Todo</a>
+    </li>
+    <!-- <li class="nav-item">
+      <a class="nav-link" href="/logout">Login</a>
+    </li> -->
+    
+    <button  class="btn log"(click)="logout()">Logout</button>
+    
+  </ul>
+</nav>
+<div>
+  {{appStatus | async}}
+</div>
+
+
+
+
+
+
+
+
 <div class="col s7">
     <table class="responsive-table highlight" >
         <thead>
@@ -17,7 +42,7 @@
           <td>{{emp.position}}</td>
           <td>{{emp.office}}</td>
           <td>{{emp.salary}}</td>
-          <td>{{emp.DT}}</td>
+          <td>{{emp.DT | date:'fullDate'}}</td>
           <td>{{emp.task}}</td>
           <td>{{emp.desc}}</td>
           <td>
@@ -27,8 +52,8 @@
               <a class="action-btn" (click)="onDelete(emp._id)">
                 <i class="material-icons">delete</i>
               </a>
-              <a class="btn btn-primary" (click)="onTask(emp._id)">
-                <i class="">Task</i>
+              <a class="action-btn" (click)="onTask(emp._id)">
+                <i class="material-icons">task</i>
               </a>
             </td>
         </tr>
